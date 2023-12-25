@@ -1,60 +1,41 @@
 <template>
   <div>
-    <!-- <HeaderComponent logo="RD7" /> -->
     <HeaderComponent :logo="headerLogo" />
-
     <h1>{{ title }}</h1>
-    <input type="text" ref="name" />
-    <button @click="handleClick">click me</button>
+    <button @click="toggleModalHandle">Toggle Modal</button>
+    <div v-if="showModal">
+      <ModalComponent :modalDesc="modalDesc" :modalTitle="modalTitle" @close="toggleModalHandle" />
+    </div>
   </div>
 </template>
 
 <script>
 import HeaderComponent from '@/components/HeaderComponent.vue'
+import ModalComponent from '@/components/ModalComponent.vue'
 
 export default {
   name: 'HomeView',
-  components: {
-    HeaderComponent
-  },
+  components: { ModalComponent, HeaderComponent },
   data() {
     return {
       title: 'Home',
-      headerLogo: 'RD7'
+      showModal: false,
+      headerLogo: 'RD7',
+      modalTitle: 'Modal Title',
+      modalDesc:
+        'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose'
     }
   },
   methods: {
-    handleClick() {
-      if (!this.$refs.name.value) {
-        this.$refs.name.classList.add('active')
-        this.$refs.name.focus()
-      } else {
-        this.$refs.name.classList.remove('active')
-        alert(this.$refs.name.value)
-        this.$refs.name.value = ''
-      }
+    toggleModalHandle() {
+      this.showModal = !this.showModal
     }
   }
 }
 </script>
 
 <style scoped>
-input {
-  padding: 8px 6px;
-  border-radius: 4px;
-  width: 50%;
-  margin: 20px 10px 0;
-  outline: none;
-}
-input.active {
-  border: 1px solid crimson;
-}
-
-button {
-  padding: 8px 16px;
-  background-color: crimson;
-  color: white;
-  border: none;
-  border-radius: 4px;
+div {
+  text-align: center;
 }
 </style>
