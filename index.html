@@ -1,86 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue lesson | Net Ninja</title>
-
-    <!-- Style CSS -->
-    <style>
-      ul {
-        margin: 0;
-        padding: 0;
-      }
-      li {
-        list-style-type: none;
-        background-color: #eee;
-        margin: 10px auto;
-        padding: 15px;
-        cursor: pointer;
-        font-family: monospace;
-      }
-      li.favorite {
-        background-color: yellow;
-      }
-    </style>
-
-    <!-- Vue JS CDN link -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
   </head>
   <body>
-    <h1>Hello VueJS</h1>
-
-    <div id="app">
-      <span>Author: {{name}}</span>
-      <br />
-      <h4>Top Programming languages</h4>
-      <table border="1" style="width: 50%">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Favorite</th>
-          </tr>
-        </thead>
-        <tbody align="center">
-          <tr
-            v-for="programLang in programmingLanguages.sort((a, b) => b.rating - a.rating)"
-          >
-            <td>{{ programLang.name }}</td>
-            <td>{{ programLang.rating }}</td>
-            <td v-if="programLang.isFavorite">⭐</td>
-            <td v-else :class="{favorite: programLang.isFavorite}"></td>
-          </tr>
-        </tbody>
-      </table>
-      <br />
-
-      <!--*** Attribute binding ***-->
-      <a v-bind:href="url">My blogs</a>
-      <hr />
-
-      <!-- 1) Binding syntactics -->
-      <a v-bind:href="url">My blogs</a>
-      <br />
-      <!-- 2) Binding syntactics -->
-      <a :href="url">My blogs</a>
-
-      <hr />
-      <img :src="avatar" alt="Author" width="300" />
-
-      <hr />
-
-      <ul>
-        <li
-          v-for="programLang in favoriteLanguages"
-          :class="{favorite: programLang.isFavorite}"
-          @click="toggleFavorite(programLang)"
-        >
-          {{ programLang.name }}
-        </li>
-      </ul>
-    </div>
-
-    <script src="./app.js"></script>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
