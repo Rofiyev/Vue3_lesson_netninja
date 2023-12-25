@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue lesson | Net Ninja</title>
+
+    <!-- Style CSS -->
+    <style>
+      .box {
+        padding: 100px 0;
+        width: 400px;
+        background: #ddd;
+        text-align: center;
+        margin: 20px;
+        display: inline-block;
+      }
+    </style>
+
+    <!-- Vue JS CDN link -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <h1>Hello VueJS</h1>
+
+    <div id="app">
+      <span>Author: {{name}}</span>
+      <br />
+
+      <div class="box" @mouseover="handleEvent($event,5)">Mouseover</div>
+      <div class="box" @mouseleave="handleEvent">Mouseleave</div>
+      <div class="box" @dblclick="handleEvent">Double click</div>
+      <!-- <div class="box"></div> -->
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
