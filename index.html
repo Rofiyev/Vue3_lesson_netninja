@@ -7,13 +7,20 @@
 
     <!-- Style CSS -->
     <style>
-      .box {
-        padding: 100px 0;
-        width: 400px;
-        background: #ddd;
-        text-align: center;
-        margin: 20px;
-        display: inline-block;
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style-type: none;
+        background-color: #eee;
+        margin: 10px auto;
+        padding: 15px;
+        cursor: pointer;
+        font-family: monospace;
+      }
+      li.favorite {
+        background-color: yellow;
       }
     </style>
 
@@ -26,11 +33,52 @@
     <div id="app">
       <span>Author: {{name}}</span>
       <br />
+      <h4>Top Programming languages</h4>
+      <table border="1" style="width: 50%">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Rating</th>
+            <th>Favorite</th>
+          </tr>
+        </thead>
+        <tbody align="center">
+          <tr
+            v-for="programLang in programmingLanguages.sort((a, b) => b.rating - a.rating)"
+          >
+            <td>{{ programLang.name }}</td>
+            <td>{{ programLang.rating }}</td>
+            <td v-if="programLang.isFavorite">⭐</td>
+            <td v-else :class="{favorite: programLang.isFavorite}"></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
 
-      <div class="box" @mouseover="handleEvent($event,5)">Mouseover</div>
-      <div class="box" @mouseleave="handleEvent">Mouseleave</div>
-      <div class="box" @dblclick="handleEvent">Double click</div>
-      <!-- <div class="box"></div> -->
+      <!--*** Attribute binding ***-->
+      <a v-bind:href="url">My blogs</a>
+      <hr />
+
+      <!-- 1) Binding syntactics -->
+      <a v-bind:href="url">My blogs</a>
+      <br />
+      <!-- 2) Binding syntactics -->
+      <a :href="url">My blogs</a>
+
+      <hr />
+      <img :src="avatar" alt="Author" width="300" />
+
+      <hr />
+
+      <ul>
+        <li
+          v-for="programLang in programmingLanguages"
+          :class="{favorite: programLang.isFavorite}"
+          @click="toggleFavorite(programLang)"
+        >
+          {{ programLang.name }}
+        </li>
+      </ul>
     </div>
 
     <script src="./app.js"></script>
