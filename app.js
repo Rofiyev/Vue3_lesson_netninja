@@ -17,6 +17,11 @@ const app = Vue.createApp({
       language.isFavorite = !language.isFavorite;
     },
   },
+  computed: {
+    favoriteLanguages() {
+      return this.programmingLanguages.filter((lang) => lang.isFavorite);
+    },
+  },
 });
 
 app.mount("#app");
