@@ -4,8 +4,19 @@
     <h1>{{ title }}</h1>
     <button @click="toggleModalHandle">Toggle Modal</button>
     <div v-if="showModal">
-      <ModalComponent :modalDesc="modalDesc" :modalTitle="modalTitle" @close="toggleModalHandle" />
+      <ModalComponent @close="toggleModalHandle">
+        <template v-slot:title>
+          <h1>{{ modalTitle }}</h1>
+        </template>
+        <template v-slot:description>
+          <p>{{ modalDesc }}</p>
+        </template>
+      </ModalComponent>
     </div>
+
+    <teleport to=".app_2">
+      <h2>Teleport</h2>
+    </teleport>
   </div>
 </template>
 

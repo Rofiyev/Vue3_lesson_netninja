@@ -2,9 +2,9 @@
   <div>
     <div class="backdrop" @click.self="closeModal">
       <div class="modal">
-        <h3>{{ modalTitle }}</h3>
+        <slot name="title" />
         <hr />
-        <p>{{ modalDesc }}</p>
+        <slot name="description" />
       </div>
     </div>
   </div>
@@ -12,7 +12,6 @@
 
 <script>
 export default {
-  props: ['modalDesc', 'modalTitle'],
   methods: {
     closeModal() {
       this.$emit('close')
