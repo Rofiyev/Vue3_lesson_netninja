@@ -1,24 +1,34 @@
 <template>
-  <div>
-    <h5>Modal open</h5>
-    <div class="block" v-if="isShowBlock">
-      <span>Modal content</span>
-    </div>
-  </div>
+  <div class="block" v-if="isShowBlock" @click="stopTimer">click me</div>
 </template>
 
 <script>
 export default {
+  props: ['delay'],
   data() {
     return {
-      isShowBlock: false
+      isShowBlock: false,
+      timer: null,
+      reactionTime: 0
+    }
+  },
+  methods: {
+    startTimer() {
+      this.timer = setInterval(() => {
+        this.reactionTime += 10
+      }, 10)
+    },
+    stopTimer() {
+      this.$emit('stopTimer', this.reactionTime)
+      clearInterval(this.timer)
     }
   },
   mounted() {
     console.log('Block component mounted...')
     setTimeout(() => {
       this.isShowBlock = true
-    }, 1000)
+      this.startTimer()
+    }, this.delay)
   },
   updated() {
     console.log('Block component updated...')
@@ -30,9 +40,6 @@ export default {
 </script>
 
 <style scoped>
-h5 {
-  margin: 20px 0;
-}
 .block {
   width: 400px;
   border-radius: 20px;
@@ -40,6 +47,6 @@ h5 {
   color: #fff;
   text-align: center;
   padding: 100px 0;
-  margin: 0 auto;
+  margin: 40px auto;
 }
 </style>

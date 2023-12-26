@@ -1,25 +1,37 @@
 <template>
   <div>
     <h1>Reaction Timer</h1>
-    <button @click="toggleModal">{{ !isPlay ? 'Open' : 'Close' }}</button>
-    <BlockComponent v-if="isPlay" />
+    <button @click="start" :disabled="isPlay">Play</button>
+    <BlockComponent v-if="isPlay" :delay="delay" @stopTimer="endGames" />
+    <ResultComponent v-if="isShowResult" :score="score" />
   </div>
 </template>
 
 <script>
 import BlockComponent from '@/components/BlockComponent.vue'
+import ResultComponent from '@/components/ResultComponent.vue'
 
 export default {
   name: 'HomeView',
   data() {
     return {
-      isPlay: false
+      isPlay: false,
+      delay: null,
+      score: null,
+      isShowResult: false
     }
   },
-  components: { BlockComponent },
+  components: { BlockComponent, ResultComponent },
   methods: {
-    toggleModal() {
-      this.isPlay = !this.isPlay
+    start() {
+      this.delay = 2000 + Math.random() * 5000
+      this.isPlay = true
+      this.isShowResult = false
+    },
+    endGames(reactionTime) {
+      this.score = reactionTime
+      this.isShowResult = true
+      this.isPlay = false
     }
   }
 }
