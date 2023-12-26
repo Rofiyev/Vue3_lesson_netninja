@@ -3,12 +3,7 @@
 </template>
 
 <script>
-export default {
-  name: 'AboutView',
-  data() {
-    return {}
-  }
-}
+export default {}
 </script>
 
 <style scoped></style>
