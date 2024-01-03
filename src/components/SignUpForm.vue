@@ -44,8 +44,8 @@ export default {
   name: 'SignUpForm',
   data() {
     return {
-      email: 'rof1yev@gmail.com',
-      password: 'dilshod0717',
+      email: '',
+      password: '',
       role: 'developer',
       term: false,
       tempSkill: '',
