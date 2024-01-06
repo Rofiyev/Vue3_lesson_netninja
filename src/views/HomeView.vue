@@ -1,15 +1,12 @@
 <template>
   <div>
-    <h1>Sign Up</h1>
-    <SignUpForm />
+    <h1>Home</h1>
   </div>
 </template>
 
 <script>
-import SignUpForm from '@/components/SignUpForm.vue'
 export default {
   name: 'HomeView',
-  components: { SignUpForm },
   data() {
     return {}
   },
