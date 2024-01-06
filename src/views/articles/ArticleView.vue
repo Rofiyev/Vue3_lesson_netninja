@@ -2,37 +2,37 @@
   <div>
     <h1>Articles</h1>
     <br />
-    <article v-for="article in articles" :key="article.id" class="article">
-      <h2 @click="this.$router.push({ name: 'article-detail', params: { id: `${article.id}` } })">
-        {{ article.title }}
-      </h2>
-    </article>
+    <div>
+      <div v-if="articles.length">
+        <article v-for="article in articles" :key="article.id" class="article">
+          <h2
+            @click="this.$router.push({ name: 'article-detail', params: { id: `${article.id}` } })"
+          >
+            {{ article.title }}
+          </h2>
+        </article>
+      </div>
+      <div v-else>
+        <h4>Loading Articles ...</h4>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'ArticleView',
   data() {
     return {
-      articles: [
-        {
-          id: 1,
-          title: 'Article 1',
-          desc: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.'
-        },
-        {
-          id: 2,
-          title: 'Article 2',
-          desc: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.'
-        },
-        {
-          id: 3,
-          title: 'Article 3',
-          desc: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.'
-        }
-      ]
+      articles: []
     }
+  },
+  mounted() {
+    ;(async () => {
+      const { data } = await axios.get('http://localhost:3001/articles')
+      this.articles = data
+    })()
   }
 }
 </script>
