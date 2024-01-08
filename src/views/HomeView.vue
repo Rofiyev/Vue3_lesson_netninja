@@ -11,8 +11,6 @@ import { ref } from 'vue'
 export default {
   name: 'HomeView',
   setup() {
-    // const name = 'Dilshod'
-    // const age = 18
     const name = ref('Dilshod')
     const age = ref(18)
     const p = ref(null)
